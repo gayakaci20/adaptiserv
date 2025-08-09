@@ -21,6 +21,7 @@ import { Fragment } from 'react'
 const navigation = [
   { name: 'Acceuil', href: '/' },
   { name: 'Contact', href: '/contact' },
+  { name: 'Boutique', link: 'https://achathub.com' },
 ]
 
 const solutions = [
@@ -57,12 +58,12 @@ export default function Navbar() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-50 bg-white shadow-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3 group">
+      <nav className="flex justify-between items-center px-4 py-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <Link href="/" className="flex gap-3 items-center group">
           <Image
             src="/logo.png"
             alt="ADAPTISERV"
-            className="h-10 w-auto group-hover:rotate-180 transition-transform duration-500"
+            className="w-auto h-10 transition-transform duration-500 group-hover:rotate-180"
             width={150}
             height={150}
           />
@@ -82,7 +83,7 @@ export default function Navbar() {
           ))}
 
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold text-gray-900 hover:text-purple-600">
+            <Popover.Button className="flex gap-x-1 items-center text-sm font-semibold text-gray-900 hover:text-purple-600">
               Solutions
               <ChevronDownIcon className="w-5 h-5" />
             </Popover.Button>
@@ -96,12 +97,12 @@ export default function Navbar() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 rounded-3xl bg-white shadow-lg ring-1 ring-gray-200">
+              <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md bg-white rounded-3xl ring-1 ring-gray-200 shadow-lg -translate-x-1/2">
                 <div className="p-4">
                   {solutions.map((item) => (
                     <Link key={item.name} href={item.href} className="flex gap-4 p-3 rounded-lg hover:bg-purple-50">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100">
-                        <item.icon className="h-6 w-6 text-purple-600" />
+                      <div className="flex justify-center items-center w-10 h-10 bg-purple-100 rounded-lg">
+                        <item.icon className="w-6 h-6 text-purple-600" />
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-gray-900">{item.name}</p>
@@ -119,7 +120,7 @@ export default function Navbar() {
         <div className="hidden lg:flex">
           <Link
             href="/login"
-            className="rounded-md bg-purple-600 px-4 py-2 text-sm text-white font-semibold hover:bg-purple-700 transition"
+            className="px-4 py-2 text-sm font-semibold text-white bg-purple-600 rounded-md transition hover:bg-purple-700"
           >
             Connexion →
           </Link>
@@ -129,26 +130,26 @@ export default function Navbar() {
         <div className="lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="p-2 text-gray-700 hover:bg-purple-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="p-2 text-gray-700 rounded-md hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
-            <Bars3Icon className="h-6 w-6" />
+            <Bars3Icon className="w-6 h-6" />
           </button>
         </div>
       </nav>
 
       {/* Mobile menu */}
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white px-6 py-6 overflow-y-auto sm:ring-1 sm:ring-gray-900/10">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/logo.png" alt="logo" className="h-8 w-auto" width={200} height={200} />
-              <span className="font-bold text-lg text-gray-900">ADAPTISERV</span>
+        <Dialog.Panel className="overflow-y-auto fixed inset-y-0 right-0 z-50 px-6 py-6 w-full max-w-sm bg-white sm:ring-1 sm:ring-gray-900/10">
+          <div className="flex justify-between items-center">
+            <Link href="/" className="flex gap-2 items-center">
+              <Image src="/logo.png" alt="logo" className="w-auto h-8" width={200} height={200} />
+              <span className="text-lg font-bold text-gray-900">ADAPTISERV</span>
             </Link>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 text-gray-700 hover:bg-purple-100 rounded-md"
+              className="p-2 text-gray-700 rounded-md hover:bg-purple-100"
             >
-              <XMarkIcon className="h-6 w-6" />
+              <XMarkIcon className="w-6 h-6" />
             </button>
           </div>
 
@@ -157,7 +158,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-purple-50"
+                className="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-purple-50"
               >
                 {item.name}
               </Link>
@@ -165,14 +166,14 @@ export default function Navbar() {
 
             <button
               onClick={() => setShowSolutions(!showSolutions)}
-              className="flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-purple-50"
+              className="flex justify-between items-center px-3 py-2 w-full text-base font-medium text-gray-900 rounded-md hover:bg-purple-50"
             >
               <span>Solutions</span>
               <ChevronDownIcon className={`h-5 w-5 transition-transform ${showSolutions ? 'rotate-180' : ''}`} />
             </button>
 
             {showSolutions && (
-              <div className="space-y-2 pl-4">
+              <div className="pl-4 space-y-2">
                 {solutions.map((item) => (
                   <Link key={item.name} href={item.href} className="block text-sm text-gray-700 hover:text-purple-600">
                     {item.name}
@@ -183,7 +184,7 @@ export default function Navbar() {
 
             <Link
               href="/login"
-              className="block w-full rounded-md bg-purple-600 px-4 py-2 text-center text-white font-semibold hover:bg-purple-700"
+              className="block px-4 py-2 w-full font-semibold text-center text-white bg-purple-600 rounded-md hover:bg-purple-700"
             >
               Connexion →
             </Link>
